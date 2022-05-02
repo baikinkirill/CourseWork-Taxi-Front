@@ -17,7 +17,6 @@
   <p align="center">
     Coursework on the subject: templates of Java language software platforms
     <br />
-    <br />
     <a href="https://github.com/baikinkirill/CourseWork-Taxi-Front">View Demo</a>
     ·
     <a href="https://github.com/baikinkirill/CourseWork-Taxi-Front/issues">Report Bug</a>
