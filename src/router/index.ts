@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import LoginPage from '../views/LoginPage/LoginPage.vue';
 
 Vue.use(VueRouter);
 
@@ -8,13 +7,14 @@ const routes: Array<RouteConfig> = [
  {
   path: '/',
   name: 'login',
-  component: LoginPage,
+  component: () =>
+   import(/* webpackChunkName: "about" */ '../views/LoginPage/LoginPage.vue'),
  },
  {
   path: '/home',
   name: 'home',
   component: () =>
-   import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+   import(/* webpackChunkName: "about" */ '../views/MainView/MainView.vue'),
  },
 ];
 

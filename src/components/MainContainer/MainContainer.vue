@@ -21,8 +21,8 @@ function checkToken() {
 
  if (route !== 'login' && !ACCESS_TOKEN) {
   this.$router.push('/');
- } else if(route==="login" && ACCESS_TOKEN){
-   this.$router.push('home');
+ } else if (route === 'login' && ACCESS_TOKEN) {
+  this.$router.push('home');
  }
 }
 

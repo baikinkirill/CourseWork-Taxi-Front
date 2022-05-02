@@ -1,0 +1,72 @@
+.mapParent {
+ overflow-y: hidden !important;
+ max-height: 100% !important;
+ position: relative;
+}
+
+.openMenuButton {
+ position: absolute;
+ z-index: 5;
+ left: 25px;
+ top: 30px;
+ cursor: pointer;
+
+ & > i {
+  font-size: 30px;
+  line-height: 0;
+ }
+}
+
+.card {
+ transition: bottom 250ms ease;
+ position: absolute;
+ z-index: 5;
+ margin: 0 auto;
+ left: 0;
+ right: 0;
+ bottom: 40px;
+
+ width: 95vw;
+ height: fit-content;
+ max-width: 600px;
+ background-color: white;
+ border-radius: 15px;
+
+ -webkit-box-shadow: 0px 0px 9px 6px rgba(34, 60, 80, 0.2);
+ -moz-box-shadow: 0px 0px 9px 6px rgba(34, 60, 80, 0.2);
+ box-shadow: 0px 0px 9px 6px rgba(34, 60, 80, 0.2);
+
+ display: block;
+ padding: 25px;
+
+ &[hidden] {
+  bottom: -50%;
+ }
+
+ .cardContent {
+  display: grid;
+  position: relative;
+  row-gap: 10px;
+
+  .buttonContainer {
+   display: flex;
+   width: 100%;
+   column-gap: 10px;
+   & *:nth-child(1) {
+    flex: 1 1 70%;
+   }
+   & *:nth-child(2) {
+    flex: 1 1 10%;
+   }
+  }
+
+  .costParent {
+   display: flex;
+   justify-content: space-between;
+
+   & > * {
+    color: gray;
+   }
+  }
+ }
+}
