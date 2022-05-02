@@ -1,0 +1,28 @@
+.parent {
+ display: grid;
+ row-gap: 25px;
+ justify-content: center;
+ justify-items: center;
+ align-content: flex-start;
+ height: 100%;
+ padding-top: 10vh;
+ width: 100%;
+ position: relative;
+
+ .logo {
+  width: 200px;
+  height: 200px;
+  margin: 40px 0px;
+ }
+
+ .inputContainer {
+  display: grid;
+  row-gap: 5px;
+  width: 250px;
+ }
+
+ .errorContainer {
+  width: 100%;
+  text-align: left;
+ }
+}

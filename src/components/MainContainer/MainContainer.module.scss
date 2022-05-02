@@ -1,0 +1,37 @@
+.parentContainer {
+ background: rgba(224, 222, 222, 0.63);
+ width: 100%;
+ height: 100vh;
+ display: grid;
+ justify-content: center;
+ align-items: center;
+
+ .parent {
+  overflow: auto;
+  overscroll-behavior-y: contain;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+
+  position: relative;
+  display: block;
+  width: 100vw;
+  max-width: 750px;
+  height: 100vh;
+  max-height: 1200px;
+  background-color: white;
+
+  scrollbar-color: #c1c1c2 #e0e0e0;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+   width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+   background-color: darkgrey;
+  }
+  &::-webkit-scrollbar-thumb {
+   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+ }
+}
