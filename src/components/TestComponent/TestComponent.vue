@@ -1,5 +1,6 @@
 <template>
  <div>
+  <slot></slot>
   <h1>{{ state.f }}</h1>
   <h1>{{ state.fe }}</h1>
  </div>

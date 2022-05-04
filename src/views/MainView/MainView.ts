@@ -2,9 +2,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { getState, setState } from '../../store/StateWorker';
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 import getAddressByCoords from '@/services/getAddressByCoords';
+import TestComponent from '@/components/TestComponent/TestComponent';
+import Menu from '../../components/Menu/Menu.vue';
 
 @Component({
- components: { yandexMap, ymapMarker },
+ components: { yandexMap, ymapMarker, Menu },
 })
 export default class LoginPage extends Vue {
  private state = getState();
@@ -35,4 +37,8 @@ export default class LoginPage extends Vue {
  deleteAddress = () => {
   setState({ address: '' });
  };
+
+ showMenu=()=>{
+  setState({menuShow:true})
+ }
 }

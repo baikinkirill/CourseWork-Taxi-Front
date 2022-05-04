@@ -20,7 +20,11 @@
      size="large"
      type="password"></at-input>
    </div>
-   <at-button :loading="state.loading" type="primary" @click="onButtonClick"
+   <at-button
+    :loading="state.loading"
+    size="large"
+    type="primary"
+    @click="onButtonClick"
     >Войти
    </at-button>
   </div>
