@@ -6,7 +6,12 @@ export default class Menu extends Vue {
  @Prop() private show!: boolean;
  private state = getState();
 
- hideMenu=()=>{
-  setState({menuShow:false})
- }
+ hideMenu = () => {
+  setState({ menuShow: false });
+ };
+
+ openHistory = () => {
+  setState({ menuShow: false });
+  this.$router.push('history');
+ };
 }

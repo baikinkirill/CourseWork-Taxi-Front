@@ -16,6 +16,12 @@ const routes: Array<RouteConfig> = [
   component: () =>
    import(/* webpackChunkName: "about" */ '../views/MainView/MainView.vue'),
  },
+ {
+  path: '/history',
+  name: 'history',
+  component: () =>
+   import(/* webpackChunkName: "about" */ '../views/History/History.vue'),
+ },
 ];
 
 const router = new VueRouter({

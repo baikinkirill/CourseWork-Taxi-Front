@@ -27,6 +27,8 @@ export default class LoginPage extends Vue {
   },
  };
 
+
+
  onClick = async (e: any) => {
   setState({ loading: true, address: 'Loading...' });
   this.state.selectedPoint = e.get('coords');
@@ -38,7 +40,7 @@ export default class LoginPage extends Vue {
   setState({ address: '' });
  };
 
- showMenu=()=>{
-  setState({menuShow:true})
- }
+ showMenu = () => {
+  setState({ menuShow: true });
+ };
 }

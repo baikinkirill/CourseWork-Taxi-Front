@@ -1,0 +1,58 @@
+.parent {
+ animation: mount 250ms ease;
+ background-color: white;
+ width: 100%;
+ padding: 15px;
+ border-radius: 7px;
+ text-align: left;
+
+ .content {
+  .dateContainer {
+   h2 {
+    line-height: 1;
+   }
+
+   .time {
+    padding-top: 5px;
+    line-height: 1;
+    font-size: 13px;
+    color: #939393;
+   }
+
+   .date {
+    color: #939393;
+   }
+  }
+
+  .addressContainer {
+   display: flex;
+   column-gap: 15px;
+   padding-top: 10px;
+   justify-content: space-between;
+
+   hr {
+    height: 25px;
+    color: #dcdcdc;
+    margin: 0;
+   }
+
+   .address {
+    font-size: 16px;
+   }
+
+   .cost {
+    font-size: 16px;
+    text-align: center;
+   }
+  }
+ }
+}
+
+@keyframes mount {
+ from {
+  margin-top: 50px;
+ }
+ to {
+  margin-top: 0px;
+ }
+}

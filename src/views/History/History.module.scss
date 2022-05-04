@@ -1,0 +1,58 @@
+.parent {
+ padding: 15px;
+ padding-top: 25px;
+
+ width: 100%;
+ height: 100%;
+
+ background-color: rgba(0, 0, 0, 0.06);
+
+ .header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .button {
+   cursor: pointer;
+   user-select: none;
+   padding-right: 25px;
+   display: flex;
+   align-items: center;
+   column-gap: 10px;
+
+   span {
+    font-weight: bold;
+    font-size: 20px;
+   }
+   i {
+    font-size: 25px;
+   }
+  }
+
+  h1 {
+   font-size: 25px;
+   text-align: center;
+   width: 100%;
+   margin-right: 50px;
+  }
+ }
+
+ .content {
+  padding-top: 25px;
+  display: grid;
+  row-gap: 10px;
+ }
+}
+
+@media (max-width: 550px) {
+ .parent {
+  .header {
+   h1 {
+    margin-right: 0px;
+    text-align: left;
+    width: fit-content;
+    font-size: 20px;
+   }
+  }
+ }
+}
