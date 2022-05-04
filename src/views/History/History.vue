@@ -7,13 +7,12 @@
    <h1>История поездок</h1>
   </div>
   <div :class="$style.content">
-    <ListItem
-        v-for="obj of lists"
-        :time="obj.time"
-        :date="obj.date"
-        :address="obj.address"
-        :cost="obj.cost" />
-
+   <ListItem
+    v-for="obj of lists"
+    :time="obj.time"
+    :date="obj.date"
+    :address="obj.address"
+    :cost="obj.cost" />
   </div>
  </div>
 </template>

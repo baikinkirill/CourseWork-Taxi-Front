@@ -1,0 +1,32 @@
+.parent {
+	padding: 25px 15px;
+
+	padding-top: 5vh;
+
+	.userData {
+		img {
+			$logoSize: 155px;
+
+			width: $logoSize;
+			height: $logoSize;
+			object-fit: cover;
+
+			padding: 10px;
+
+			border: 1px #d0d0d0 solid;
+			border-radius: 100%;
+		}
+
+		h2 {
+			margin-top: 15px;
+		}
+	}
+	.content{
+		margin-top: 50px;
+		hr {
+			width: 90%;
+			margin: 0 auto;
+			color: rgba(243, 243, 243, 0.38);
+		}
+	}
+}
