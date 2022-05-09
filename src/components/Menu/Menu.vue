@@ -9,7 +9,10 @@
     </div>
    </div>
    <div :class="$style.buttonsContainer">
-    <ListButton @click="openHistory" title="История поездок" icon="icons/history.png"/>
+    <ListButton
+     @click="openHistory"
+     title="История поездок"
+     icon="icons/history.png" />
     <hr />
    </div>
   </div>

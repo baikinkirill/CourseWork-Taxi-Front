@@ -3,9 +3,9 @@ import { getState, setState } from '@/store/StateWorker';
 import ListButton from '@/components/ListButton/ListButton.vue';
 
 @Component({
- components:{
+ components: {
   ListButton,
- }
+ },
 })
 export default class Menu extends Vue {
  @Prop() private show!: boolean;

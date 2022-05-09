@@ -1,11 +1,14 @@
 <template>
  <div :class="$style.mapParent">
   <Menu :show="state.menuShow" userName="Фамилия Имя">fdsf</Menu>
-  <div @click="showMenu" :class="$style.openMenuButton">
+  <div :class="$style.openMenuButton" @click="showMenu">
    <i class="icon icon-menu"></i>
   </div>
   <div :class="$style.card" :hidden="!state.address">
-    <CreateOrderPanel/>
+   <CreateOrderPanel v-show="tabId === 0" @createTask="createTask" />
+   <DriverWaiting v-show="tabId === 1" @cancelTask="cancelTask" />
+   <ActiveTask v-show="tabId === 2" @cancelTask="cancelTask" />
+   <!--   ТУТА ЕЩЕ СОСТОЯНИЕ, КОГДА ПОЕЗДКА ЗАКОНЧЕНА   -->
   </div>
   <yandex-map
    :controls="settings.controls"
