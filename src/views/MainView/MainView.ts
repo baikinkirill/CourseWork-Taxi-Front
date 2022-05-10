@@ -43,7 +43,7 @@ export default class LoginPage extends Vue {
  cancelTask() {
   this.tabId = 0;
 
-  let order = new Order();
+  const order = new Order();
   order.cost = 25;
   console.log(order.cost);
  }
