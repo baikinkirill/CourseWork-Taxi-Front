@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export default class Order {
  private _fromAddress?: string;
  private _toAddress?: string;
