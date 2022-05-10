@@ -20,7 +20,7 @@ export default class LoginPage extends Vue {
 
  onButtonClick = async (event: any) => {
   setState({ loading: true, error: '' });
-  const TOKEN = await getToken("f,","f");
+  const TOKEN = await getToken('f,', 'f');
   this.state.loading = false;
   this.$router.push('home');
  };
