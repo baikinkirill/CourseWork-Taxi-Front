@@ -2,12 +2,15 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { getState, setState } from '../../store/StateWorker';
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 import getAddressByCoords from '@/services/getAddressByCoords';
-import TestComponent from '@/components/TestComponent/TestComponent';
 import Menu from '../../components/Menu/Menu.vue';
 import CreateOrderPanel from './components/CreateOrderPanel.vue';
 import DriverWaiting from './components/DriverWaiting.vue';
 import ActiveTask from './components/ActiveTask.vue';
 import Order from '@/utils/Order';
+import { OrderStatus } from '@/enums/OrderStatus';
+import getToken, { getId, parseJwt } from '@/services/TokenManager';
+import createOrder from '@/services/createOrder';
+import deleteOrder from '@/services/deleteOrder';
 
 @Component({
  components: {
@@ -41,14 +44,31 @@ export default class LoginPage extends Vue {
  };
 
  cancelTask() {
+  deleteOrder(getId());
   this.tabId = 0;
+ }
 
-  const order = new Order();
-  order.cost = 25;
-  console.log(order.cost);
+ created() {
+  const token = getToken();
+  if (typeof token === 'string') {
+   const jwt = parseJwt(token);
+   if (jwt.aud[0] === 'driver') {
+    this.$router.push('account');
+   }
+  }
  }
 
  createTask() {
+  const ord = new Order();
+  ord.clientId = getId();
+  ord.startTime = Math.ceil(new Date().getTime() / 1000);
+  ord.toAddress = this.state.address;
+  ord.fromAddress = 'Москва, пр. Вернадского 78';
+  ord.cost = 3500;
+  setState({ activeOrder: ord });
+
+  createOrder(ord).then((r) => setState({ activeOrder: ord }));
+
   this.tabId = 1;
  }
 
@@ -58,6 +78,10 @@ export default class LoginPage extends Vue {
 
  done() {
   this.tabId = 3;
+ }
+
+ constructor() {
+  super();
  }
 
  async onClick(e: any) {

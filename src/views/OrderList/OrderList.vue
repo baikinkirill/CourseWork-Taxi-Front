@@ -7,9 +7,18 @@
    <h1>Текущие заказы</h1>
   </div>
   <div :class="$style.content">
-   <ListClickButton />
-   <ListClickButton />
-   <ListClickButton />
+   <div
+    v-if='orderList.length===0'
+   >
+    <h2>Тут пусто :(</h2>
+   </div>
+    <ListClickButton
+     v-else
+     v-for='obj of orderList'
+     :from='obj.fromAddress'
+     :to='obj.toAddress'
+     :cost='obj.cost'
+    />
   </div>
  </div>
 </template>

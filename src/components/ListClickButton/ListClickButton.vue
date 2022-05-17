@@ -1,10 +1,10 @@
 <template>
  <div :class="$style.parent">
   <div @click="onOpen">
-   <span><b>От: </b>тест</span>
+   <span><b>От: </b>{{from}}</span>
    <br />
-   <span><b>До: </b>тест</span>
-   <h4>Стоимость: 1300</h4>
+   <span><b>До: </b>{{to}}</span>
+   <h4>Стоимость: {{cost}}</h4>
   </div>
   <transition name="fade">
    <div v-show="open" :class="$style.buttons">

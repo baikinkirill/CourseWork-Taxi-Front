@@ -12,16 +12,23 @@ import getToken from '@/services/TokenManager';
 })
 export default class LoginPage extends Vue {
  private state = getState();
+ public login="";
+ public password="";
  @Prop() private route!: string;
 
  constructor() {
   super();
  }
 
- onButtonClick = async (event: any) => {
+ async onButtonClick(event: any) {
   setState({ loading: true, error: '' });
-  const TOKEN = await getToken('f,', 'f');
-  this.state.loading = false;
-  this.$router.push('home');
- };
+  try{
+   await getToken(this.login, this.password)
+   this.state.loading = false;
+   this.$router.push('home');
+  }catch (e){
+   this.state.loading=false;
+   setState({error:e})
+  }
+ }
 }

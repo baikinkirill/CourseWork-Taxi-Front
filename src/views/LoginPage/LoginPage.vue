@@ -8,13 +8,13 @@
    </div>
    <div :class="$style.inputContainer">
     <at-input
-     v-model="state.user.login"
+     v-model="login"
      :disabled="state.loading"
      placeholder="Логин"
      size="large"
      type="login"></at-input>
     <at-input
-     v-model="state.user.password"
+     v-model="password"
      :disabled="state.loading"
      placeholder="Пароль"
      size="large"

@@ -52,7 +52,7 @@ $ npm install
 $ npm run serve
 ```
 
-And then look main page in [http://localhost:8080](http://localhost:8080)
+And then look main page in [http://localhost:3000](http://localhost:3000)
 
 ## Production
 
