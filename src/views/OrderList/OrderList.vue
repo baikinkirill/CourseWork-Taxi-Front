@@ -18,6 +18,7 @@
      :from='obj.fromAddress'
      :to='obj.toAddress'
      :cost='obj.cost'
+     :orderId='obj.id'
     />
   </div>
  </div>

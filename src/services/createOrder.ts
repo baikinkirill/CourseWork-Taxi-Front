@@ -12,11 +12,13 @@ export default function createOrder(ord: Order): Promise<OrderObject> {
   {
    method: 'POST',
   }
- ).then((e) => {
-  if (e.status === 201) {
-   return e.json();
-  } else {
-   throw 'Ошибка';
-  }
- });
+ )
+  .then((e) => {
+   if (e.status === 201) {
+    return e.json();
+   } else {
+    throw 'Ошибка';
+   }
+  })
+  .then((e) => e.response);
 }

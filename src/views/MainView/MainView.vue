@@ -7,7 +7,7 @@
   <div :class="$style.card" :hidden="!state.address">
    <CreateOrderPanel v-show="tabId === 0" @createTask="createTask" />
    <DriverWaiting v-show="tabId === 1" @cancelTask="cancelTask" />
-   <ActiveTask v-show="tabId === 2" @cancelTask="cancelTask" />
+   <ActiveTask v-show="tabId === 2" @cancelTask="cancelTask" :order='activeOrder'/>
    <!--   ТУТА ЕЩЕ СОСТОЯНИЕ, КОГДА ПОЕЗДКА ЗАКОНЧЕНА   -->
   </div>
   <yandex-map

@@ -9,6 +9,7 @@ export default new Vuex.Store({
    loading: false,
    route: undefined,
    ACCESS_TOKEN: undefined,
+   activeOrder: undefined,
    selectedPoint: ['55.669986', '37.480409'],
    address: '',
    user: {

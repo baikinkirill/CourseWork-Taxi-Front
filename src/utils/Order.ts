@@ -3,6 +3,7 @@
 import getOrders from '@/services/getOrders';
 import { OrderObject } from '@/types/Order';
 import { OrderStatus } from '@/enums/OrderStatus';
+import getToken from '@/services/TokenManager';
 
 export default class Order implements OrderObject {
  clientId: number = 0;
@@ -15,33 +16,31 @@ export default class Order implements OrderObject {
  status: OrderStatus = OrderStatus.CREATED;
  toAddress: string = '';
 
- init(
-  clientId: number,
-  cost: number,
-  driverId: number,
-  endTime: number,
-  fromAddress: string,
-  id: number,
-  startTime: number,
-  status: OrderStatus,
-  toAddress: string
- ) {
-  this.clientId = clientId;
-  this.cost = cost;
-  this.driverId = driverId;
-  this.endTime = endTime;
-  this.fromAddress = fromAddress;
-  this.id = id;
-  this.startTime = startTime;
-  this.status = status;
-  this.toAddress = toAddress;
+ init(order: OrderObject) {
+  this.clientId = order.clientId;
+  this.cost = order.cost;
+  this.driverId = order.driverId;
+  this.endTime = order.endTime;
+  this.fromAddress = order.fromAddress;
+  this.id = order.id;
+  this.startTime = order.startTime;
+  this.status = order.status;
+  this.toAddress = order.toAddress;
  }
 
  constructor() {}
 
  async initById(id: number) {
-  let obj = (await getOrders('id', id + ''))[0];
-  console.log(obj);
+  let obj = <OrderObject>(await getOrders('id', id + ''))[0];
+  this.clientId = obj.clientId;
+  this.cost = obj.cost;
+  this.driverId = obj.driverId;
+  this.endTime = obj.endTime;
+  this.fromAddress = obj.fromAddress;
+  this.id = obj.id;
+  this.startTime = obj.startTime;
+  this.status = obj.status;
+  this.toAddress = obj.toAddress;
  }
 
  toRequestString() {
@@ -56,5 +55,38 @@ export default class Order implements OrderObject {
 
  toObject() {
   return { ...this };
+ }
+
+ // Не в сервисах потому что я устал (2:33 ночи)
+
+ done() {
+  fetch(
+   process.env.VUE_APP_API_HOST +
+    `/orders/complete?token=${getToken()}&status=completed`,
+   {
+    method: 'GET',
+   }
+  );
+ }
+
+ subscribe() {
+  return new Promise((resolve, reject) => {
+   let wait = false;
+   let interval = setInterval(() => {
+    if (!wait) {
+     wait = true;
+     console.log(this);
+     getOrders('id', this.id.toString()).then((e) => {
+      wait = false;
+      if (typeof e === 'object') {
+       if (e[0].status !== this.status) {
+        resolve(e[0].status);
+        return;
+       }
+      }
+     });
+    }
+   }, 1500);
+  });
  }
 }

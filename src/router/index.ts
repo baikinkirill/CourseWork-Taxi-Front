@@ -34,6 +34,12 @@ const routes: Array<RouteConfig> = [
   component: () =>
    import(/* webpackChunkName: "about" */ '../views/Account/Account.vue'),
  },
+ {
+  path: '/order',
+  name: 'orderPage',
+  component: () =>
+   import(/* webpackChunkName: "about" */ '../views/OrderPage/OrderPage.vue'),
+ },
 ];
 
 const router = new VueRouter({

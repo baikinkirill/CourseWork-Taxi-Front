@@ -11,6 +11,8 @@ import { OrderStatus } from '@/enums/OrderStatus';
 import getToken, { getId, parseJwt } from '@/services/TokenManager';
 import createOrder from '@/services/createOrder';
 import deleteOrder from '@/services/deleteOrder';
+import getUser from '@/services/getUser';
+import { OrderObject } from '@/types/Order';
 
 @Component({
  components: {
@@ -26,6 +28,7 @@ export default class LoginPage extends Vue {
  private state = getState();
  @Prop() private route!: string;
  @Prop() private userName!: string;
+ activeOrder: Order | undefined = new Order();
  tabId = 0;
 
  private settings = {
@@ -48,12 +51,37 @@ export default class LoginPage extends Vue {
   this.tabId = 0;
  }
 
- created() {
+ async created() {
   const token = getToken();
   if (typeof token === 'string') {
    const jwt = parseJwt(token);
    if (jwt.aud[0] === 'driver') {
     this.$router.push('account');
+   } else {
+    const user = await getUser();
+    const order = new Order();
+    if (user.activeOrder) {
+     await order.initById((<OrderObject>user.activeOrder).id);
+     this.activeOrder = order;
+     setState({
+      user: user,
+      activeOrder: order,
+      address: order.toAddress,
+     });
+     if (user.activeOrder) {
+      if (order.status === OrderStatus.CREATED) {
+       this.tabId = 1;
+       order.subscribe().then((r) => {
+        if (r === OrderStatus.ACTIVE) {
+         this.tabId = 2;
+        }
+       });
+      } else if (order.status === OrderStatus.ACTIVE) {
+       this.tabId = 2;
+       order.subscribe();
+      }
+     }
+    }
    }
   }
  }
@@ -67,7 +95,17 @@ export default class LoginPage extends Vue {
   ord.cost = 3500;
   setState({ activeOrder: ord });
 
-  createOrder(ord).then((r) => setState({ activeOrder: ord }));
+  createOrder(ord).then((r) => {
+   setState({ activeOrder: ord });
+   const order = new Order();
+   order.init(r);
+   console.log(order.toObject());
+   order.subscribe().then((r) => {
+    if (r === OrderStatus.ACTIVE) {
+     this.tabId = 2;
+    }
+   });
+  });
 
   this.tabId = 1;
  }
@@ -85,10 +123,12 @@ export default class LoginPage extends Vue {
  }
 
  async onClick(e: any) {
-  setState({ loading: true, address: 'Loading...' });
-  this.state.selectedPoint = e.get('coords');
-  const result = await getAddressByCoords(e.get('coords'));
-  setState({ loading: false, address: result });
+  if (this.tabId !== 2) {
+   setState({ loading: true, address: 'Loading...' });
+   this.state.selectedPoint = e.get('coords');
+   const result = await getAddressByCoords(e.get('coords'));
+   setState({ loading: false, address: result });
+  }
  }
 
  showMenu = () => {

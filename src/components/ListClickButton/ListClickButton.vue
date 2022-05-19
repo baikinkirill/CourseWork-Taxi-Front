@@ -8,7 +8,7 @@
   </div>
   <transition name="fade">
    <div v-show="open" :class="$style.buttons">
-    <at-button type="primary">Взять заказ</at-button>
+    <at-button type="primary" @click='confirmOrder'>Взять заказ</at-button>
     <at-button hollow type="error" @click="open = false">Отмена</at-button>
    </div>
   </transition>

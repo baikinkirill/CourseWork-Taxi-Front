@@ -1,22 +1,27 @@
 <template>
- <div :class="$style.parent">
-  <div :class="$style.userData">
-   <img src="/icons/logo.png" alt="" />
-   <h2>Иванов Иван</h2>
-  </div>
-  <div :class="$style.content">
-   <ListButton
-    @click="$router.push('orders')"
-    title="Текущие заказы"
-    icon="icons/list.png" />
-   <hr />
-   <ListButton
-    @click="$router.push('history')"
-    title="История заказов"
-    icon="icons/history.png" />
+ <div :class='$style.parent'>
+  <h2>Активный заказ</h2>
+  <div :class='$style.content'>
+   <table>
+    <tbody>
+    <tr>
+     <td>Адрес:</td>
+     <td>{{ state.activeOrder.toAddress || '' }}</td>
+    </tr>
+    <tr>
+     <td>Время начала:</td>
+     <td>{{ state.activeOrder ? (new Date(state.activeOrder.startTime*1000).toLocaleString('ru')) : ('') }}</td>
+    </tr>
+    <tr>
+     <td>Стоимость:</td>
+     <td>{{state.activeOrder.cost || 0}}</td>
+    </tr>
+    </tbody>
+   </table>
+   <at-button hollow type='success' @click='cancel'>Завершить заказ</at-button>
   </div>
  </div>
 </template>
 
-<script lang="ts" src="./Account.ts"></script>
-<style module src="./Account.module.scss" lang="scss"></style>
+<script lang='ts' src='./OrderPage.ts'></script>
+<style lang='scss' module src='./OrderPage.module.scss'></style>
