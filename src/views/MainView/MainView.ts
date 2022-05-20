@@ -13,6 +13,7 @@ import createOrder from '@/services/createOrder';
 import deleteOrder from '@/services/deleteOrder';
 import getUser from '@/services/getUser';
 import { OrderObject } from '@/types/Order';
+import OrderComplete from './components/OrderComplete.vue';
 
 @Component({
  components: {
@@ -22,6 +23,7 @@ import { OrderObject } from '@/types/Order';
   CreateOrderPanel,
   DriverWaiting,
   ActiveTask,
+  OrderComplete,
  },
 })
 export default class LoginPage extends Vue {
@@ -48,6 +50,9 @@ export default class LoginPage extends Vue {
 
  cancelTask() {
   deleteOrder(getId());
+  if (this.activeOrder) {
+   this.activeOrder.status = OrderStatus.COMPLETED;
+  }
   this.tabId = 0;
  }
 
@@ -74,16 +79,29 @@ export default class LoginPage extends Vue {
        order.subscribe().then((r) => {
         if (r === OrderStatus.ACTIVE) {
          this.tabId = 2;
+         this.waitWhileComplete();
         }
        });
       } else if (order.status === OrderStatus.ACTIVE) {
        this.tabId = 2;
-       order.subscribe();
+       this.waitWhileComplete();
       }
+      this.activeOrder = order;
      }
     }
    }
   }
+ }
+
+ waitWhileComplete() {
+  if (!this.activeOrder) return;
+  this.activeOrder.subscribe().then((r) => {
+   if (r === OrderStatus.COMPLETED) {
+    this.tabId = 3;
+   } else if (r === OrderStatus.CREATED || r === OrderStatus.ACTIVE) {
+    this.waitWhileComplete();
+   }
+  });
  }
 
  createTask() {
@@ -99,12 +117,15 @@ export default class LoginPage extends Vue {
    setState({ activeOrder: ord });
    const order = new Order();
    order.init(r);
-   console.log(order.toObject());
+   this.activeOrder = order;
    order.subscribe().then((r) => {
     if (r === OrderStatus.ACTIVE) {
      this.tabId = 2;
+     this.activeOrder = order;
+     this.waitWhileComplete();
     }
    });
+   this.activeOrder = order;
   });
 
   this.tabId = 1;

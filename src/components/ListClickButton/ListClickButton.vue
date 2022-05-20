@@ -1,6 +1,6 @@
 <template>
  <div :class="$style.parent">
-  <div @click="onOpen">
+  <div @click="onOpen" >
    <span><b>От: </b>{{from}}</span>
    <br />
    <span><b>До: </b>{{to}}</span>

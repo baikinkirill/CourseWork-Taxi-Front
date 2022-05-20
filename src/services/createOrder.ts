@@ -14,7 +14,7 @@ export default function createOrder(ord: Order): Promise<OrderObject> {
   }
  )
   .then((e) => {
-   if (e.status === 201) {
+   if (e.status === 201 || e.status === 200) {
     return e.json();
    } else {
     throw 'Ошибка';

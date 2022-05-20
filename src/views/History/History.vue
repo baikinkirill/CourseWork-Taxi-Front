@@ -9,9 +9,9 @@
   <div :class="$style.content">
    <ListItem
     v-for="obj of lists"
-    :time="obj.time"
-    :date="obj.date"
-    :address="obj.address"
+    :time="new Date(obj.startTime*1000).toLocaleTimeString('ru')"
+    :date="new Date(obj.startTime*1000).toLocaleDateString('ru')"
+    :address="obj.toAddress"
     :cost="obj.cost" />
   </div>
  </div>

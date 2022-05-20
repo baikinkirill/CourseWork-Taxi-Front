@@ -45,10 +45,12 @@ export default class Order implements OrderObject {
 
  toRequestString() {
   let obj: any = JSON.parse(JSON.stringify(this));
+  console.log(obj);
 
   return Object.keys(this)
    .map((e) => {
-    return `&${e}=${obj[e].toString()}`;
+    if (obj[e]) return `&${e}=${obj[e].toString()}`;
+    else return '';
    })
    .join('');
  }
@@ -60,7 +62,7 @@ export default class Order implements OrderObject {
  // Не в сервисах потому что я устал (2:33 ночи)
 
  done() {
-  fetch(
+  return fetch(
    process.env.VUE_APP_API_HOST +
     `/orders/complete?token=${getToken()}&status=completed`,
    {
@@ -78,8 +80,15 @@ export default class Order implements OrderObject {
      console.log(this);
      getOrders('id', this.id.toString()).then((e) => {
       wait = false;
+      if (e.length === 0) {
+       resolve('');
+       wait = true;
+       clearInterval(interval);
+      }
       if (typeof e === 'object') {
        if (e[0].status !== this.status) {
+        wait = true;
+        clearInterval(interval);
         resolve(e[0].status);
         return;
        }

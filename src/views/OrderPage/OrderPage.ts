@@ -15,7 +15,9 @@ export default class OrderPage extends Vue {
 
  cancel() {
   if (this.state.activeOrder) {
-   (<Order>this.state.activeOrder).done();
+   (<Order>this.state.activeOrder).done().then(() => {
+    this.$router.push('/account');
+   });
   }
  }
 }

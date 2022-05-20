@@ -13,6 +13,7 @@
     <h2>Тут пусто :(</h2>
    </div>
     <ListClickButton
+     :router='$router'
      v-else
      v-for='obj of orderList'
      :from='obj.fromAddress'
