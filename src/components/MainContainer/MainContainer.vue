@@ -19,7 +19,7 @@ function checkToken() {
  const ACCESS_TOKEN = localStorage.getItem('ACCESS_TOKEN');
  setState({ route: route, ACCESS_TOKEN });
 
- if (route !== 'login' && !ACCESS_TOKEN) {
+ if ((route !== 'login' && route !== 'register') && !ACCESS_TOKEN) {
   this.$router.push('/');
  } else if (route === 'login' && ACCESS_TOKEN) {
   this.$router.push('home');

@@ -40,6 +40,14 @@ const routes: Array<RouteConfig> = [
   component: () =>
    import(/* webpackChunkName: "about" */ '../views/OrderPage/OrderPage.vue'),
  },
+ {
+  path: '/register',
+  name: 'register',
+  component: () =>
+   import(
+    /* webpackChunkName: "about" */ '../views/Registration/Registration.vue'
+   ),
+ },
 ];
 
 const router = new VueRouter({

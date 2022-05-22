@@ -1,9 +1,5 @@
 import { OrderObject } from '@/types/Order';
-
-export enum UserType {
- DRIVER = 'driver',
- CLIENT = 'client',
-}
+import { UserType } from '@/enums/UserType';
 
 export interface UserObject {
  id: number;

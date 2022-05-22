@@ -27,6 +27,7 @@
     @click="onButtonClick"
     >Войти
    </at-button>
+   <router-link to="register">Зарегистрироваться</router-link>
   </div>
  </MainContainer>
 </template>

@@ -41,8 +41,14 @@ export function getId(): number {
  }
 }
 
+export function saveToken(token: string) {
+ localStorage.setItem('ACCESS_TOKEN', token);
+ return true;
+}
+
 export function deleteToken() {
  localStorage.setItem('ACCESS_TOKEN', '');
+ return true;
 }
 
 export function parseJwt(token: string) {

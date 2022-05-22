@@ -2,7 +2,7 @@
  <div :class="$style.parent">
   <div :class="$style.userData">
    <img src="/icons/logo.png" alt="" />
-   <h2>Иванов Иван</h2>
+   <h2>{{user.lastName || ""}} {{user.firstName || ""}}</h2>
   </div>
   <div :class="$style.content">
    <ListButton

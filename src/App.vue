@@ -20,7 +20,7 @@ import MainContainer from '@/components/MainContainer/MainContainer.vue';
   MainContainer,
  },
 })
-export default class LoginPage extends Vue {}
+export default class Registration extends Vue {}
 </script>
 <style lang="scss">
 #app {
