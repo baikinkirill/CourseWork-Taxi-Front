@@ -23,6 +23,7 @@ export default class ListClickButton extends Vue {
   if (this.orderId == undefined) return;
 
   ord.id = this.orderId;
+  console.log(ord.toRequestString());
   createOrder(ord).then((r) => {
    const result: OrderObject = r;
    this.router?.push('account');

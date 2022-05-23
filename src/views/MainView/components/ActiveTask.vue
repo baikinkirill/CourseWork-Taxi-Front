@@ -20,9 +20,17 @@ export default {
  data:()=>{
   return {state:getState(),driver:null}
  },
+ watch:{
+  order: async function(val) {
+   let driver = await getUserById(this.order.driverId)
+   this.driver = driver
+  }
+ },
  async created() {
-  let driver = await getUserById(this.order.driverId)
-  this.driver=driver
+  try{
+   let driver = await getUserById(this.order.driverId)
+   this.driver=driver
+  }catch (e){}
  }
 };
 </script>

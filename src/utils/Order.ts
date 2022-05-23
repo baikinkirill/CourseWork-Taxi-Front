@@ -49,7 +49,7 @@ export default class Order implements OrderObject {
 
   return Object.keys(this)
    .map((e) => {
-    if (obj[e]) return `&${e}=${obj[e].toString()}`;
+    if (obj[e] !== undefined) return `&${e}=${obj[e].toString()}`;
     else return '';
    })
    .join('');
