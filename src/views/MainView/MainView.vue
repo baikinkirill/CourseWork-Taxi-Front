@@ -7,7 +7,7 @@
   <div :class='$style.card' :hidden='!state.address'>
    <CreateOrderPanel v-show='tabId === 0' @createTask='createTask' />
    <DriverWaiting v-show='tabId === 1' @cancelTask='cancelTask' />
-   <ActiveTask v-show='tabId === 2' :order='activeOrder' @cancelTask='cancelTask' />
+   <ActiveTask v-if='tabId === 2' :order='activeOrder' @cancelTask='cancelTask' />
    <OrderComplete v-show='tabId === 3' @click='tabId=0; state.address=""'/>
   </div>
   <yandex-map

@@ -120,8 +120,8 @@ export default class LoginPage extends Vue {
    this.activeOrder = order;
    order.subscribe().then((r) => {
     if (r === OrderStatus.ACTIVE) {
-     this.tabId = 2;
      this.activeOrder = order;
+     this.tabId = 2;
      this.waitWhileComplete();
     }
    });

@@ -77,7 +77,6 @@ export default class Order implements OrderObject {
    let interval = setInterval(() => {
     if (!wait) {
      wait = true;
-     console.log(this);
      getOrders('id', this.id.toString()).then((e) => {
       wait = false;
       if (e.length === 0) {
@@ -86,11 +85,15 @@ export default class Order implements OrderObject {
        clearInterval(interval);
       }
       if (typeof e === 'object') {
-       if (e[0].status !== this.status) {
-        wait = true;
-        clearInterval(interval);
-        resolve(e[0].status);
-        return;
+       if (e[0]) {
+        if (e[0].status !== this.status) {
+         wait = true;
+         this.driverId = e[0].driverId;
+         this.status = e[0].status;
+         clearInterval(interval);
+         resolve(e[0].status);
+         return;
+        }
        }
       }
      });

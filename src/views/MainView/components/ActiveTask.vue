@@ -27,10 +27,10 @@ export default {
   }
  },
  async created() {
-  try{
+  if(this.order.driverId){
    let driver = await getUserById(this.order.driverId)
    this.driver=driver
-  }catch (e){}
+  }
  }
 };
 </script>
